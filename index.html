@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic" rel="stylesheet"> 
+    <link rel="stylesheet" href="Style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Catan</title>
+</head>
+<body>
+    <textarea id="source" style="display:none;">
+        layout: true
+        class: middle
+        background-image: url(ozadje2.png)
+        background-size: cover
+        background-repeat:
+        
+        ---
+        
+        class: center, middle
+        
+        # Na koliko načinov se lahko igramo Catan?
+        
+        ---
+        <div class="text-box">
+        Predstavitev je osnovana <a href="https://www.youtube.com/watch?v=NkNoVnXfVXI">na tem videu.</a>
+
+        ---
+        
+        # Osnovna pravila igre
+        
+        <div class="text-box">
+        Catan je strateška namizna igra za 3-4 igralce. Cilj je doseči 10 zmagovalnih točk z gradnjo naselij, mest in cest.
+
+
+        --
+
+        ## Začetek igre
+        
+        - Vsak igralec postavi dve naselji in dve cesti na ploščo.
+        
+        ---
+
+        ## Potek poteze
+        <div class="text-box">
+        1. Vržete kocki, da ugotovite, katera polja proizvajajo vire.
+
+        2. Zbirate vire glede na lokacijo svojih naselij in mest.
+
+        3. Trgujete z drugimi igralci ali banko.
+
+        4. Gradite nove ceste, naselja, mesta ali kupujete razvojne karte.
+        
+        ---
+       
+        name: Možne postavitve
+        
+        # Možne postavitve
+        <div class="text-box">
+        Otok sestavimo iz:
+        - 4 ovc,
+        - 3 skal,
+        - 4 gozdov,
+        - 3 opek,
+        - 3 žit,
+        - 1 puščave.
+        .right[<img src=surovine.png height="180">]
+  
+        Na vsako kopensko ploščo razen puščave postavim številko od 2 do 12.
+      
+        Kombinatorično lahko to gledamo kot permutacije multimnožice.
+
+        ---
+
+        # Permutacija multimnožice
+        <div class="text-box">
+        Število permutacij izračunamo takole:
+        $$\binom{n}{k_1, k_2, ... ,k_n} = \frac{n!}{k_1!k_2!...k_n!}$$
+  
+        V našem primeru ima multimnožica 19 elementov s po 3,3,4,4 in 4 ponovitvami.
+
+        ---
+
+        #Postavitev številk
+        <div class="text-box">
+        Na 18 polj postavimo številke od 2 do 12, nekaj števil se pojavi večkrat. To so 3,4,5,6,8,9,10,11.
+  
+        Sedaj jih bomo razvrstili na polja. Najprej preštejmo permutacije multimnožice števil. Ko številke postavljamo si lahko mislimo, da je otok
+        ravna črta iz polj surovin. Tako za vsako permutacijo in vsako postavitev polj dobimo eno možno igralno kombinacijo.
+
+        ---
+
+        #Rešitev
+        <div class="text-box">
+        Vseh kombinacij je torej:
+        $$\frac{19!}{3!3!4!4!4!}\frac{18!}{2^8} = 6.11307115 \cdot 10^{24}$$
+    
+        ---
+
+        # Optimizacije štetja
+        <div class="text-box">
+        Število možnosti smo prešteli zelo površno saj nismo upoštevali simetrije otoka in postavitve pristanišč.
+
+        ---
+
+        # Sestavi svoj otok!
+        <div class="text-box">
+        Za svoj otok lahko izbereš koliko ponovitev katere surovine bo imel (ševilk ne bomo izbirali ker bi sicer bile številke prevelike):
+        <div id="island-setup"></div>
+        Velikost otoka:
+        <div id="island-size-value"></div>
+        Možnih postavitev je:
+        <div id="result"></div>
+
+        
+
+        .footnote[Avtor: Filip Erznožnik; Ljubljana, 15. 01. 2025]   
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+<script src="Script.js"></script>   
+</body>
+</html>
